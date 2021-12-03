@@ -1,5 +1,4 @@
 function crescent-choose -d "draw a tui for choosing"
-crescent-gwsize
 crescent-backend
 set crescent_title $argv[1]
 set crescent_title_menu $argv[2]

@@ -1,6 +1,5 @@
 #!/usr/bin/env fish
 function crescent-choose -d "draw a tui for choosing"
-crescent-gwsize
 crescent-backend
 set crescent_title $argv[1]
 set crescent_title_menu $argv[2]
@@ -22,50 +21,50 @@ end
 function crescent-gauge -d "progress bar"
 crescent-backend
 set crescent_title $argv[1]
-set crescent_gauge_text $argv[2]
+set crescent_title_gauge $argv[2]
 set crescent_gauge_percent $argv[3]
   if [ "$argv[1]" = "" ]
     set crescent_title crescent_title
   end
   if [ "$argv[2]" = "" ]
-    set crescent_gauge_text crescent_gauge_text
+    set crescent_title_gauge crescent_title_gauge
   end
   if [ "$argv[3]" = "" ]
     set crescent_gauge_percent 0
   end
-  echo $crescent_gauge_percent | $crescent_backend --title $crescent_title --gauge $crescent_gauge_text 0 0 0
+  echo $crescent_gauge_percent | $crescent_backend --title $crescent_title --gauge $crescent_title_gauge 0 0 0
 end
 function crescent-input -d "input box"
 crescent-backend
 set crescent_title $argv[1]
-set crescent_title_text $argv[2]
+set crescent_title_input $argv[2]
 set crescent_text_init $argv[3]
   if [ "$argv[1]" = "" ]
     set crescent_title crescent_title
   end
   if [ "$argv[2]" = "" ]
-    set crescent_title_text crescent_title_text
+    set crescent_title_input crescent_title_input
   end
-set crescent_output ($crescent_backend --title $crescent_title --inputbox $crescent_title_text 0 0 $crescent_text_init 3>&1 1>&2 2>&3 3>&-)
+set crescent_output ($crescent_backend --title $crescent_title --inputbox $crescent_title_input 0 0 $crescent_text_init 3>&1 1>&2 2>&3 3>&-)
 end
 function crescent-inputmenu -d "draw a tui for input"
 crescent-backend
 set crescent_title $argv[1]
-set crescent_title_text $argv[2]
-set crescent_menu_text_list $argv[3..-1]
+set crescent_title_menu_text_input $argv[2]
+set crescent_menu_list_text $argv[3..-1]
   if [ "$argv[1]" = "" ]
     set crescent_title crescent_title
   end
   if [ "$argv[2]" = "" ]
-    set crescent_title_text crescent_title_text
+    set crescent_title_menu_text_input crescent_title_menu_text_input
   end
-  if [ "$crescent_menu_text_list" = "" ]
+  if [ "$crescent_menu_list_text" = "" ]
     set_color red
     echo "$prefix nothing to list,abort"
     set_color normal
     exit
   end
-  set crescent_output ($crescent_backend --title $crescent_title --inputmenu $crescent_menu_text_list 0 0 0 $crescent_menu_list_text 3>&1 1>&2 2>&3 3>&-)
+  set crescent_output ($crescent_backend --title $crescent_title --inputmenu $crescent_title_menu_text_input 0 0 0 $crescent_menu_list_text 3>&1 1>&2 2>&3 3>&-)
 end
 function crescent-backend -d "detect backend for crescent"
   if command -q -v dialog
@@ -82,11 +81,7 @@ function crescent-backend -d "detect backend for crescent"
     end
   end
 end
-function crescent-gwsize -d "get window size"
-set crescent_gwsize (stty size)
-echo "$prefix Grabbed window size $crescent_gwsize"
-end
-echo Build_Time_UTC=2021-11-28_06:25:17
+echo Build_Time_UTC=2021-12-03_12:45:42
 function crescent
 switch $argv[1]
 case choose
