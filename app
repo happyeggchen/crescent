@@ -1,28 +1,4 @@
 #!/usr/bin/env fish
-function help_echo
-  echo "==========Help Documentation=========="
-  set_color green
-  echo "(./)app argv[1]"
-  set_color normal
-  echo " -argv[1]:the command to execute"
-  echo "  -Available:gauge argv[2] argv[3] argv[4]
-    argv[2] -> crescent_title
-    argv[3] -> crescent_title_gauge
-    argv[4] -> crescent_gauge_percent
-  choose argv[2] argv[3] argv[4+]
-    argv[2] -> crescent_title
-    argv[3] -> crescent_title_menu
-    argv[4] -> crescent_menu_list
-  input argv[2] argv[3] argv[4]
-    argv[2] -> crescent_title
-    argv[3] -> crescent_title_text
-    argv[4] -> crescent_text_init
-  inputmenu argv[2] argv[3] argv[4..-1]
-    argv[2] -> crescent_title
-    argv[3] -> crescent_title_menu_text_input
-    argv[4] -> crescent_menu_list_text (two as a gruop likes 'hi' '',the second argv will be treated as init vaule,leave blank for nothing)"
-  echo "======================================"
-end
 function crescent-choose -d "draw a tui for choosing"
 crescent-backend
 set crescent_title $argv[1]
@@ -105,7 +81,7 @@ function crescent-backend -d "detect backend for crescent"
     end
   end
 end
-echo Build_Time_UTC=2021-12-03_12:51:19
+echo Build_Time_UTC=2021-12-04_04:25:39
 function crescent
 switch $argv[1]
 case choose
@@ -116,8 +92,6 @@ case inputmenu
   crescent-inputmenu $argv[2] $argv[3] $argv[4..-1]
 case gauge
   crescent-gauge $argv[2] $argv[3] $argv[4]
-case h help '*'
-  help_echo
 end
 #trash collection
 set -e crescent_backend
