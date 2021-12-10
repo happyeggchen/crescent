@@ -16,4 +16,5 @@ if [ "$crescent_menu_list" = "" ]
   exit
 end
 set crescent_output ($crescent_backend --title $crescent_title --menu $crescent_title_menu 0 0 0 $crescent_menu_list 3>&1 1>&2 2>&3 3>&-)
+echo $crescent_output
 end

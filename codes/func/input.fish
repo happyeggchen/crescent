@@ -10,4 +10,5 @@ set crescent_text_init $argv[3]
     set crescent_title_input crescent_title_input
   end
 set crescent_output ($crescent_backend --title $crescent_title --inputbox $crescent_title_input 0 0 $crescent_text_init 3>&1 1>&2 2>&3 3>&-)
+echo $crescent_output
 end

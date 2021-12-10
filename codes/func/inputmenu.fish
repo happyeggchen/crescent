@@ -16,4 +16,5 @@ set crescent_menu_list_text $argv[3..-1]
     exit
   end
   set crescent_output ($crescent_backend --title $crescent_title --inputmenu $crescent_title_menu_text_input 0 0 0 $crescent_menu_list_text 3>&1 1>&2 2>&3 3>&-)
+echo $crescent_output
 end
